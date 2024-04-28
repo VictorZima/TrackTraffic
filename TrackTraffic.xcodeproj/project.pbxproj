@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2817F0772BDCC34400D4E44D /* DatePickerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2817F0762BDCC34400D4E44D /* DatePickerTest.swift */; };
+		2817F0792BDDE4C100D4E44D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2817F0782BDDE4C100D4E44D /* .gitignore */; };
 		282BDE6F2BD7282300218DDF /* TrackTrafficApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */; };
 		282BDE712BD7282300218DDF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE702BD7282300218DDF /* MainView.swift */; };
 		282BDE732BD7282400218DDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282BDE722BD7282400218DDF /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		2817F0762BDCC34400D4E44D /* DatePickerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTest.swift; sourceTree = "<group>"; };
+		2817F0782BDDE4C100D4E44D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		282BDE6B2BD7282300218DDF /* TrackTraffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackTraffic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTrafficApp.swift; sourceTree = "<group>"; };
 		282BDE702BD7282300218DDF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		282BDE622BD7282300218DDF = {
 			isa = PBXGroup;
 			children = (
+				2817F0782BDDE4C100D4E44D /* .gitignore */,
 				282BDE6D2BD7282300218DDF /* TrackTraffic */,
 				282BDE6C2BD7282300218DDF /* Products */,
 			);
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				282BDE762BD7282400218DDF /* Preview Assets.xcassets in Resources */,
+				2817F0792BDDE4C100D4E44D /* .gitignore in Resources */,
 				282BDE732BD7282400218DDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
