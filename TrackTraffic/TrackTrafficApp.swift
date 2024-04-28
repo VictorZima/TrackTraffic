@@ -11,7 +11,8 @@ import SwiftUI
 struct TrackTrafficApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
+        .modelContainer(for: [Person.self, Traffic.self, Track.self])
     }
 }
