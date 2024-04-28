@@ -34,7 +34,7 @@ struct TrafficView: View {
     var body: some View {
         TabView {
             VStack(spacing: 3) {
-                Text("Track Traffic Test")
+                Text("Track Traffic")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundStyle(Color.orange)
