@@ -12,9 +12,11 @@ import SwiftData
 class Track {
     var number: String
     var model: String
+    var driverName: String?
     
-    init(number: String, model: String) {
+    init(number: String, model: String, driverName: String? = nil) {
         self.number = number
         self.model = model
+        self.driverName = driverName
     }
 }

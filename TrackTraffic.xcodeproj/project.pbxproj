@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2817F0772BDCC34400D4E44D /* DatePickerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2817F0762BDCC34400D4E44D /* DatePickerTest.swift */; };
 		2817F0792BDDE4C100D4E44D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2817F0782BDDE4C100D4E44D /* .gitignore */; };
 		282BDE6F2BD7282300218DDF /* TrackTrafficApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */; };
 		282BDE712BD7282300218DDF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE702BD7282300218DDF /* MainView.swift */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2817F0762BDCC34400D4E44D /* DatePickerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTest.swift; sourceTree = "<group>"; };
 		2817F0782BDDE4C100D4E44D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		282BDE6B2BD7282300218DDF /* TrackTraffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackTraffic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTrafficApp.swift; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				28648F552BDB348E000EBC02 /* TrackView.swift */,
 				28A117012BD75D7F0037DB47 /* EditPersonView.swift */,
 				28648F572BDB3623000EBC02 /* EditTrackView.swift */,
-				2817F0762BDCC34400D4E44D /* DatePickerTest.swift */,
 				282BDE722BD7282400218DDF /* Assets.xcassets */,
 				282BDE742BD7282400218DDF /* Preview Content */,
 			);
@@ -183,7 +180,6 @@
 				28648F562BDB348F000EBC02 /* TrackView.swift in Sources */,
 				282BDE712BD7282300218DDF /* MainView.swift in Sources */,
 				28F577062BD9EE0D00B9F331 /* Traffic.swift in Sources */,
-				2817F0772BDCC34400D4E44D /* DatePickerTest.swift in Sources */,
 				28F577032BD9C52400B9F331 /* TrafficView.swift in Sources */,
 				28648F582BDB3623000EBC02 /* EditTrackView.swift in Sources */,
 				282BDE6F2BD7282300218DDF /* TrackTrafficApp.swift in Sources */,

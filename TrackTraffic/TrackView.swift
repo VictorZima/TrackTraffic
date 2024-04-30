@@ -19,7 +19,18 @@ struct TrackView: View {
                 ForEach(track) { track in
                     NavigationLink(value: track) {
                         HStack {
-                            Text(track.number)
+                            VStack {
+                                Text(track.number)
+                                if let driverName = track.driverName {
+                                    Text(driverName)
+                                        .font(.caption)
+                                        .foregroundStyle(Color.gray)
+                                } else {
+                                    Text("---")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.gray)
+                                }
+                            }
                             Spacer()
                             Text(track.model)
                                 .font(.subheadline)
@@ -41,7 +52,7 @@ struct TrackView: View {
     }
     
     func addTrack() {
-        let track = Track(number: "", model: "")
+        let track = Track(number: "", model: "", driverName: nil)
         modelContext.insert(track)
         path.append(track)
     }

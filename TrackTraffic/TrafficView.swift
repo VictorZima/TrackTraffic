@@ -17,7 +17,10 @@ struct TrafficView: View {
     @State private var trackNumber: String = ""
     @State private var driverName: String = ""
     @State private var selectedInTime = Date()
+    @State private var editMode: EditMode = .inactive
+    
     let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    
     var todaysTraffics: [Traffic] {
         let calendar = Calendar.current
         return traffics.filter { traffic in
@@ -34,7 +37,7 @@ struct TrafficView: View {
     var body: some View {
         TabView {
             VStack(spacing: 3) {
-                Text("Track Traffic")
+                Text("Track Traffic Test")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundStyle(Color.orange)
@@ -61,9 +64,19 @@ struct TrafficView: View {
                         
                         ForEach(tracks, id: \.self) { track in
                             Button {
+                                if let driver = track.driverName {
+                                    driverName = driver
+                                }
                                 trackNumber = track.number
                             } label: {
-                                Text(track.number)
+                                VStack {
+                                    Text(track.number)
+//                                    if let driverName = track.driverName, !driverName.isEmpty {
+//                                        Text(driverName)
+//                                            .font(.caption)
+//                                            .foregroundStyle(Color.white.opacity(0.4))
+//                                    }
+                                }
                             }
                             .frame(width: 100)
                             .padding(.vertical, 7)
@@ -150,52 +163,53 @@ struct TrafficView: View {
             .padding()
             .tag(0)
             
-            VStack {
-                Text("All Traffic")
-                Text(Date().formatted(.dateTime.day().month().year()))
-                    .font(.subheadline)
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text("Name")
-                            .font(.subheadline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("Track №")
-                            .font(.subheadline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("Time In")
-                            .font(.subheadline)
-                            .frame(minWidth: 50, alignment: .leading)
-                        Text("Time Out")
-                            .font(.subheadline)
-                            .frame(minWidth: 50, alignment: .leading)
-                    }
-                    .padding(.horizontal, 4)
-                    .background(Color.blue.opacity(0.3))
-                    .foregroundColor(.white)
-                    
-                    
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            ForEach(todaysTraffics.indices, id: \.self) { index in
+                VStack {
+                    Text("All Traffic")
+                    Text(Date().formatted(.dateTime.day().month().year()))
+                        .font(.subheadline)
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            Text("Name")
+                                .font(.subheadline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("Track №")
+                                .font(.subheadline)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("Time In")
+                                .font(.subheadline)
+                                .frame(minWidth: 50, alignment: .leading)
+                            Text("Time Out")
+                                .font(.subheadline)
+                                .frame(minWidth: 50, alignment: .leading)
+                        }
+                        .padding(.horizontal, 4)
+                        .background(Color.blue.opacity(0.3))
+                        .foregroundColor(.white)
+                        
+                        List {
+                            ForEach(todaysTraffics, id: \.self) { traffic in
                                 HStack {
-                                    Text(todaysTraffics[index].driverName)
+                                    Text(traffic.driverName)
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(todaysTraffics[index].trackNumber)
+                                    Text(traffic.trackNumber)
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(todaysTraffics[index].dateIn?.formatted(.dateTime.hour().minute()) ?? "***")
+                                    Text(traffic.dateIn?.formatted(.dateTime.hour().minute()) ?? "***")
                                         .frame(minWidth: 50, alignment: .leading)
-                                    Text(todaysTraffics[index].dateOut?.formatted(.dateTime.hour().minute()) ?? "***")
+                                    Text(traffic.dateOut?.formatted(.dateTime.hour().minute()) ?? "***")
                                         .frame(minWidth: 50, alignment: .leading)
                                 }
-                                .padding(.horizontal, 4)
-                                .frame(minHeight: 30)
-                                .background(index % 2 == 0 ? Color.gray.opacity(0.1) : Color.gray.opacity(0.3))
+                                //                            .padding(.horizontal, 4)
+                                //                            .frame(minHeight: 30)
+                                //                            .background(traffic.hashValue % 2 == 0 ? Color.gray.opacity(0.1) : Color.gray.opacity(0.3))
                             }
+                            .onDelete(perform: deleteTraffic)
                         }
+                        .navigationBarItems(trailing: EditButton())
+                        .environment(\.editMode, $editMode)
                     }
                 }
-            }
-            .tag(1)
+                .tag(1)
+
             
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -222,6 +236,18 @@ struct TrafficView: View {
             modelContex.insert(newTraffic)
         }
         clearForm()
+    }
+    
+    func deleteTraffic(at offsets: IndexSet) {
+        for index in offsets {
+            let traffic = todaysTraffics[index]
+            modelContex.delete(traffic)
+            do {
+                try modelContex.save()  // Сохраняем изменения в контексте
+            } catch {
+                print("Failed to save context after deletion: \(error)")
+            }
+        }
     }
     
     func clearForm() {
