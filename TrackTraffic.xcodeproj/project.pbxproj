@@ -17,6 +17,7 @@
 		28648F582BDB3623000EBC02 /* EditTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28648F572BDB3623000EBC02 /* EditTrackView.swift */; };
 		28A117002BD757D20037DB47 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A116FF2BD757D20037DB47 /* Person.swift */; };
 		28A117022BD75D7F0037DB47 /* EditPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A117012BD75D7F0037DB47 /* EditPersonView.swift */; };
+		28E309992BE0963900CE4E1D /* AllTrafficView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E309982BE0963900CE4E1D /* AllTrafficView.swift */; };
 		28F577012BD9BB4400B9F331 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F577002BD9BB4400B9F331 /* PersonView.swift */; };
 		28F577032BD9C52400B9F331 /* TrafficView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F577022BD9C52400B9F331 /* TrafficView.swift */; };
 		28F577062BD9EE0D00B9F331 /* Traffic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F577052BD9EE0D00B9F331 /* Traffic.swift */; };
@@ -34,6 +35,7 @@
 		28648F572BDB3623000EBC02 /* EditTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTrackView.swift; sourceTree = "<group>"; };
 		28A116FF2BD757D20037DB47 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		28A117012BD75D7F0037DB47 /* EditPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonView.swift; sourceTree = "<group>"; };
+		28E309982BE0963900CE4E1D /* AllTrafficView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTrafficView.swift; sourceTree = "<group>"; };
 		28F577002BD9BB4400B9F331 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		28F577022BD9C52400B9F331 /* TrafficView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficView.swift; sourceTree = "<group>"; };
 		28F577052BD9EE0D00B9F331 /* Traffic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traffic.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				28F577042BD9C53C00B9F331 /* Models */,
 				282BDE702BD7282300218DDF /* MainView.swift */,
 				28F577022BD9C52400B9F331 /* TrafficView.swift */,
+				28E309982BE0963900CE4E1D /* AllTrafficView.swift */,
 				28F577002BD9BB4400B9F331 /* PersonView.swift */,
 				28648F552BDB348E000EBC02 /* TrackView.swift */,
 				28A117012BD75D7F0037DB47 /* EditPersonView.swift */,
@@ -183,6 +186,7 @@
 				28F577032BD9C52400B9F331 /* TrafficView.swift in Sources */,
 				28648F582BDB3623000EBC02 /* EditTrackView.swift in Sources */,
 				282BDE6F2BD7282300218DDF /* TrackTrafficApp.swift in Sources */,
+				28E309992BE0963900CE4E1D /* AllTrafficView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,21 +21,8 @@ struct TrafficView: View {
     
     let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     
-    var todaysTraffics: [Traffic] {
-        let calendar = Calendar.current
-        return traffics.filter { traffic in
-            if let dateIn = traffic.dateIn, calendar.isDateInToday(dateIn) {
-                return true
-            }
-            if let dateOut = traffic.dateOut, calendar.isDateInToday(dateOut) {
-                return true
-            }
-            return false
-        }
-    }
-    
     var body: some View {
-        TabView {
+        NavigationStack {
             VStack(spacing: 3) {
                 Text("Track Traffic Test")
                     .font(.title2)
@@ -122,14 +109,23 @@ struct TrafficView: View {
                     }
                 }
                 .padding(.bottom, 5)
-                DatePicker("Time", selection: $selectedInTime, displayedComponents: .hourAndMinute)
-                    .datePickerStyle(CompactDatePickerStyle())
-                    .labelsHidden()
-                    .onReceive(timer) { input in
-                        selectedInTime = input
+                HStack {
+                    DatePicker("Time", selection: $selectedInTime, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(CompactDatePickerStyle())
+                        .labelsHidden()
+                        .onReceive(timer) { input in
+                            selectedInTime = input
+                        }
+                        .foregroundColor(.gray)
+                        .background(Color.clear)
+                    Spacer()
+                    NavigationLink {
+                        AllTrafficView()
+                    } label: {
+                        Text("All traffic")
                     }
-                    .foregroundColor(.gray)
-                    .background(Color.clear)
+                }
+                
                 HStack(spacing: 20) {
                     Button {
                         trackIn(trackNumber: trackNumber, driverName: driverName, dateIn: selectedInTime)
@@ -161,59 +157,14 @@ struct TrafficView: View {
                 .padding(.bottom, 30)
             }
             .padding()
-            .tag(0)
+//            .tag(0)
             
-                VStack {
-                    Text("All Traffic")
-                    Text(Date().formatted(.dateTime.day().month().year()))
-                        .font(.subheadline)
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack {
-                            Text("Name")
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text("Track №")
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text("Time In")
-                                .font(.subheadline)
-                                .frame(minWidth: 50, alignment: .leading)
-                            Text("Time Out")
-                                .font(.subheadline)
-                                .frame(minWidth: 50, alignment: .leading)
-                        }
-                        .padding(.horizontal, 4)
-                        .background(Color.blue.opacity(0.3))
-                        .foregroundColor(.white)
-                        
-                        List {
-                            ForEach(todaysTraffics, id: \.self) { traffic in
-                                HStack {
-                                    Text(traffic.driverName)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(traffic.trackNumber)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(traffic.dateIn?.formatted(.dateTime.hour().minute()) ?? "***")
-                                        .frame(minWidth: 50, alignment: .leading)
-                                    Text(traffic.dateOut?.formatted(.dateTime.hour().minute()) ?? "***")
-                                        .frame(minWidth: 50, alignment: .leading)
-                                }
-                                //                            .padding(.horizontal, 4)
-                                //                            .frame(minHeight: 30)
-                                //                            .background(traffic.hashValue % 2 == 0 ? Color.gray.opacity(0.1) : Color.gray.opacity(0.3))
-                            }
-                            .onDelete(perform: deleteTraffic)
-                        }
-                        .navigationBarItems(trailing: EditButton())
-                        .environment(\.editMode, $editMode)
-                    }
-                }
-                .tag(1)
+
 
             
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-        .background(.gray.opacity(0.2))
+//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//        .background(.gray.opacity(0.2))
     }
     
     func trackIn(trackNumber: String, driverName: String, dateIn: Date) {
@@ -236,18 +187,6 @@ struct TrafficView: View {
             modelContex.insert(newTraffic)
         }
         clearForm()
-    }
-    
-    func deleteTraffic(at offsets: IndexSet) {
-        for index in offsets {
-            let traffic = todaysTraffics[index]
-            modelContex.delete(traffic)
-            do {
-                try modelContex.save()  // Сохраняем изменения в контексте
-            } catch {
-                print("Failed to save context after deletion: \(error)")
-            }
-        }
     }
     
     func clearForm() {
