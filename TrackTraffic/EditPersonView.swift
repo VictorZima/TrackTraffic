@@ -21,7 +21,3 @@ struct EditPersonView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-//
-//#Preview {
-//    EditPersonView()
-//}

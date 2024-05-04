@@ -26,7 +26,6 @@ struct AllTrafficView: View {
     }
     
     var body: some View {
-        
         VStack {
             Text("All Traffic")
             Text(Date().formatted(.dateTime.day().month().year()))
@@ -81,14 +80,10 @@ struct AllTrafficView: View {
             let traffic = todaysTraffics[index]
             modelContex.delete(traffic)
             do {
-                try modelContex.save()  // Сохраняем изменения в контексте
+                try modelContex.save()
             } catch {
                 print("Failed to save context after deletion: \(error)")
             }
         }
     }
 }
-
-//#Preview {
-//    AllTrafficView()
-//}

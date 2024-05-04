@@ -47,7 +47,3 @@ struct PersonView: View {
         }
     }
 }
-//
-//#Preview {
-//    PersonView()
-//}

@@ -24,7 +24,7 @@ struct TrafficView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 3) {
-                Text("Track Traffic Test")
+                Text("Track Traffic")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundStyle(Color.orange)
@@ -58,11 +58,6 @@ struct TrafficView: View {
                             } label: {
                                 VStack {
                                     Text(track.number)
-//                                    if let driverName = track.driverName, !driverName.isEmpty {
-//                                        Text(driverName)
-//                                            .font(.caption)
-//                                            .foregroundStyle(Color.white.opacity(0.4))
-//                                    }
                                 }
                             }
                             .frame(width: 100)
@@ -157,14 +152,7 @@ struct TrafficView: View {
                 .padding(.bottom, 30)
             }
             .padding()
-//            .tag(0)
-            
-
-
-            
         }
-//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-//        .background(.gray.opacity(0.2))
     }
     
     func trackIn(trackNumber: String, driverName: String, dateIn: Date) {

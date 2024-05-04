@@ -34,7 +34,6 @@ struct TrackView: View {
                             Spacer()
                             Text(track.model)
                                 .font(.subheadline)
-                            
                         }
                     }
                 }
@@ -48,7 +47,6 @@ struct TrackView: View {
                 Button("Add Track", systemImage: "plus", action: addTrack)
             }
         }
-        
     }
     
     func addTrack() {
