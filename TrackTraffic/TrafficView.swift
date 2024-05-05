@@ -23,88 +23,99 @@ struct TrafficView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 3) {
-                Text("Track Traffic")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundStyle(Color.orange)
-
-                HStack(alignment: .top) {
-                    VStack(spacing: 3) {
-                        TextField("Enter number or chose from list", text: $trackNumber)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.bottom, 3)
-                            .overlay(
-                                HStack {
-                                    Spacer()
-                                    if !trackNumber.isEmpty {
-                                        Button(action: {
-                                            self.trackNumber = ""
-                                        }) {
-                                            Image(systemName: "multiply.circle.fill")
-                                                .foregroundColor(.gray)
+            ZStack(alignment: .bottom) {
+                Color.blue
+                    .opacity(0.1)
+                    .edgesIgnoringSafeArea(.top)
+                
+                Image("trafficBackground")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .opacity(0.1)
+                
+                VStack(spacing: 3) {
+                    Text("Track Traffic")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundStyle(Color.orange)
+                    
+                    HStack(alignment: .top) {
+                        VStack(spacing: 3) {
+                            TextField("Enter number or chose from list", text: $trackNumber)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.bottom, 3)
+                                .overlay(
+                                    HStack {
+                                        Spacer()
+                                        if !trackNumber.isEmpty {
+                                            Button(action: {
+                                                self.trackNumber = ""
+                                            }) {
+                                                Image(systemName: "multiply.circle.fill")
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .padding(.trailing, 17)
                                         }
-                                        .padding(.trailing, 17)
+                                    }
+                                )
+                            
+                            ForEach(tracks, id: \.self) { track in
+                                Button {
+                                    if let driver = track.driverName {
+                                        driverName = driver
+                                    }
+                                    trackNumber = track.number
+                                } label: {
+                                    VStack {
+                                        Text(track.number)
                                     }
                                 }
-                            )
-                        
-                        ForEach(tracks, id: \.self) { track in
-                            Button {
-                                if let driver = track.driverName {
-                                    driverName = driver
-                                }
-                                trackNumber = track.number
-                            } label: {
-                                VStack {
-                                    Text(track.number)
-                                }
+                                .frame(width: 100)
+                                .padding(.vertical, 7)
+                                .background(.blue)
+                                .foregroundColor(.white)
+                                .font(.headline)
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                .shadow(radius: 5)
                             }
-                            .frame(width: 100)
-                            .padding(.vertical, 7)
-                            .background(.blue)
-                            .foregroundColor(.white)
-                            .font(.headline)
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
-                            .shadow(radius: 5)
                         }
-                    }
-                    VStack(spacing: 3) {
-                        TextField("Enter name or chose from list", text: $driverName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.bottom, 3)
-                            .overlay(
-                                HStack {
-                                    Spacer()
-                                    if !driverName.isEmpty {
-                                        Button(action: {
-                                            self.driverName = ""
-                                        }) {
-                                            Image(systemName: "multiply.circle.fill")
-                                                .foregroundColor(.gray)
+                        VStack(spacing: 3) {
+                            TextField("Enter name or chose from list", text: $driverName)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.bottom, 3)
+                                .overlay(
+                                    HStack {
+                                        Spacer()
+                                        if !driverName.isEmpty {
+                                            Button(action: {
+                                                self.driverName = ""
+                                            }) {
+                                                Image(systemName: "multiply.circle.fill")
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .padding(.trailing, 17)
                                         }
-                                        .padding(.trailing, 17)
                                     }
+                                )
+                            
+                            ForEach(people) { person in
+                                Button {
+                                    driverName = person.name
+                                } label: {
+                                    Text(person.name)
+                                        .frame(width: 120)
+                                        .padding(.vertical, 7)
+                                        .background(.blue)
+                                        .foregroundColor(.white)
+                                        .font(.headline)
+                                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                                        .shadow(radius: 5)
                                 }
-                            )
-                        ForEach(people) { person in
-                            Button {
-                                driverName = person.name
-                            } label: {
-                                Text(person.name)
-                                    .frame(width: 120)
-                                    .padding(.vertical, 7)
-                                    .background(.blue)
-                                    .foregroundColor(.white)
-                                    .font(.headline)
-                                    .clipShape(RoundedRectangle(cornerRadius: 6))
-                                    .shadow(radius: 5)
                             }
                         }
                     }
-                }
-                .padding(.bottom, 5)
-                HStack {
+                    .padding(.bottom, 5)
+                    
                     DatePicker("Time", selection: $selectedInTime, displayedComponents: .hourAndMinute)
                         .datePickerStyle(CompactDatePickerStyle())
                         .labelsHidden()
@@ -113,45 +124,40 @@ struct TrafficView: View {
                         }
                         .foregroundColor(.gray)
                         .background(Color.clear)
-                    Spacer()
-                    NavigationLink {
-                        AllTrafficView()
-                    } label: {
-                        Text("All traffic")
+                    
+                    HStack(spacing: 20) {
+                        Button {
+                            trackIn(trackNumber: trackNumber, driverName: driverName, dateIn: selectedInTime)
+                        } label: {
+                            Text("In")
+                                .foregroundStyle(.white)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding()
+                                .frame(minWidth: 100)
+                        }
+                        .background(.green)
+                        .clipShape(Circle())
+                        .shadow(radius: 10)
+                        Button {
+                            trackOut(trackNumber: trackNumber, driverName: driverName, dateOut: selectedInTime)
+                        } label: {
+                            Text("Out")
+                                .foregroundStyle(.white)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding()
+                                .frame(minWidth: 100)
+                        }
+                        .background(.red)
+                        .clipShape(Circle())
+                        .shadow(radius: 10)
                     }
+                    .padding(.bottom, 30)
                 }
-                
-                HStack(spacing: 20) {
-                    Button {
-                        trackIn(trackNumber: trackNumber, driverName: driverName, dateIn: selectedInTime)
-                    } label: {
-                        Text("In")
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding()
-                            .frame(minWidth: 100)
-                    }
-                    .background(.green)
-                    .clipShape(Circle())
-                    .shadow(radius: 10)
-                    Button {
-                        trackOut(trackNumber: trackNumber, driverName: driverName, dateOut: selectedInTime)
-                    } label: {
-                        Text("Out")
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding()
-                            .frame(minWidth: 100)
-                    }
-                    .background(.red)
-                    .clipShape(Circle())
-                    .shadow(radius: 10)
-                }
-                .padding(.bottom, 30)
+                .padding()
             }
-            .padding()
+            
         }
     }
     

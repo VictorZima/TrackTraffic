@@ -13,7 +13,11 @@ struct MainView: View {
         TabView {
             TrafficView()
                 .tabItem {
-                    Label("Traffic", systemImage: "car.2")
+                    Label("In/Out", systemImage: "car.2")
+                }  
+            AllTrafficView()
+                .tabItem {
+                    Label("All Traffic", systemImage: "parkingsign.radiowaves.right.and.safetycone")
                 }
             PersonView()
                 .tabItem {
