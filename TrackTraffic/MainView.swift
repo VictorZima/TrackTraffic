@@ -28,6 +28,11 @@ struct MainView: View {
                     Label("Tracks", systemImage: "car.side")
                 }
         }
+        .tint(.black)
+        .onAppear(perform: {
+            UITabBar.appearance().unselectedItemTintColor = .gray
+            UITabBar.appearance().backgroundColor = .systemGray6
+        })
     }
 }
 

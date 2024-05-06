@@ -22,7 +22,7 @@ struct TrafficView: View {
     let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        NavigationStack {
+//        NavigationStack {
             ZStack(alignment: .bottom) {
                 Color.blue
                     .opacity(0.1)
@@ -157,8 +157,7 @@ struct TrafficView: View {
                 }
                 .padding()
             }
-            
-        }
+//        }
     }
     
     func trackIn(trackNumber: String, driverName: String, dateIn: Date) {
