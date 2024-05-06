@@ -72,7 +72,7 @@ struct TrafficView: View {
                                 }
                                 .frame(width: 100)
                                 .padding(.vertical, 7)
-                                .background(.blue)
+                                .background(.gray.opacity(0.4))
                                 .foregroundColor(.white)
                                 .font(.headline)
                                 .clipShape(RoundedRectangle(cornerRadius: 6))
@@ -105,7 +105,7 @@ struct TrafficView: View {
                                     Text(person.name)
                                         .frame(width: 120)
                                         .padding(.vertical, 7)
-                                        .background(.blue)
+                                        .background(.gray.opacity(0.4))
                                         .foregroundColor(.white)
                                         .font(.headline)
                                         .clipShape(RoundedRectangle(cornerRadius: 6))
