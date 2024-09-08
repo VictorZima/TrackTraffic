@@ -13,19 +13,19 @@ struct MainView: View {
         TabView {
             TrafficView()
                 .tabItem {
-                    Label("In/Out", systemImage: "car.2")
-                }  
+                    Label("כניסה/יציאה", systemImage: "car.2")
+                }
             AllTrafficView()
                 .tabItem {
-                    Label("All Traffic", systemImage: "parkingsign.radiowaves.right.and.safetycone")
+                    Label("כל התנועה", systemImage: "parkingsign.radiowaves.right.and.safetycone")
                 }
             PersonView()
                 .tabItem {
-                    Label("Drivers", systemImage: "figure.seated.seatbelt")
+                    Label("נהגים", systemImage: "figure.seated.seatbelt")
                 }
             TrackView()
                 .tabItem {
-                    Label("Tracks", systemImage: "car.side")
+                    Label("משאיות", systemImage: "truck.box")
                 }
         }
         .tint(.black)

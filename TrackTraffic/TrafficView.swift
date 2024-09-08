@@ -22,142 +22,141 @@ struct TrafficView: View {
     let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     
     var body: some View {
-//        NavigationStack {
-            ZStack(alignment: .bottom) {
-                Color.blue
-                    .opacity(0.1)
-                    .edgesIgnoringSafeArea(.top)
+        ZStack(alignment: .bottom) {
+            Color.blue
+                .opacity(0.1)
+                .edgesIgnoringSafeArea(.top)
+            
+            Image("trafficBackground")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .opacity(0.1)
+            
+            VStack(spacing: 3) {
+                Text("מעקב תנועה")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color.orange)
                 
-                Image("trafficBackground")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .opacity(0.1)
-                
-                VStack(spacing: 3) {
-                    Text("Track Traffic")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundStyle(Color.orange)
-                    
-                    HStack(alignment: .top) {
-                        VStack(spacing: 3) {
-                            TextField("Enter number or chose from list", text: $trackNumber)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 3)
-                                .overlay(
-                                    HStack {
-                                        Spacer()
-                                        if !trackNumber.isEmpty {
-                                            Button(action: {
-                                                self.trackNumber = ""
-                                            }) {
-                                                Image(systemName: "multiply.circle.fill")
-                                                    .foregroundColor(.gray)
-                                            }
-                                            .padding(.trailing, 17)
+                HStack(alignment: .top) {
+                    VStack(spacing: 3) {
+                        TextField("Enter number or chose from list", text: $trackNumber)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.bottom, 3)
+                            .overlay(
+                                HStack {
+                                    Spacer()
+                                    if !trackNumber.isEmpty {
+                                        Button(action: {
+                                            self.trackNumber = ""
+                                        }) {
+                                            Image(systemName: "multiply.circle.fill")
+                                                .foregroundColor(.black)
                                         }
-                                    }
-                                )
-                            
-                            ForEach(tracks, id: \.self) { track in
-                                Button {
-                                    if let driver = track.driverName {
-                                        driverName = driver
-                                    }
-                                    trackNumber = track.number
-                                } label: {
-                                    VStack {
-                                        Text(track.number)
+                                        .padding(.trailing, 17)
                                     }
                                 }
-                                .frame(width: 100)
-                                .padding(.vertical, 7)
-                                .background(.gray.opacity(0.4))
-                                .foregroundColor(.white)
-                                .font(.headline)
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
-                                .shadow(radius: 5)
+                            )
+                        
+                        ForEach(tracks, id: \.self) { track in
+                            Button {
+                                if let driver = track.driverName {
+                                    driverName = driver
+                                }
+                                trackNumber = track.number
+                            } label: {
+                                VStack {
+                                    Text(formatTrackNumber(track.number))
+                                }
                             }
+                            .frame(width: 100)
+                            .padding(.vertical, 7)
+                            .background(.black)
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                            .shadow(radius: 5)
                         }
-                        VStack(spacing: 3) {
-                            TextField("Enter name or chose from list", text: $driverName)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.bottom, 3)
-                                .overlay(
-                                    HStack {
-                                        Spacer()
-                                        if !driverName.isEmpty {
-                                            Button(action: {
-                                                self.driverName = ""
-                                            }) {
-                                                Image(systemName: "multiply.circle.fill")
-                                                    .foregroundColor(.gray)
-                                            }
-                                            .padding(.trailing, 17)
+                    }
+                    VStack(spacing: 3) {
+                        TextField("Enter name or chose from list", text: $driverName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.bottom, 3)
+                            .overlay(
+                                HStack {
+                                    Spacer()
+                                    if !driverName.isEmpty {
+                                        Button(action: {
+                                            self.driverName = ""
+                                        }) {
+                                            Image(systemName: "multiply.circle.fill")
+                                                .foregroundColor(.black)
                                         }
+                                        .padding(.trailing, 17)
                                     }
-                                )
-                            
-                            ForEach(people) { person in
-                                Button {
-                                    driverName = person.name
-                                } label: {
-                                    Text(person.name)
-                                        .frame(width: 120)
-                                        .padding(.vertical, 7)
-                                        .background(.gray.opacity(0.4))
-                                        .foregroundColor(.white)
-                                        .font(.headline)
-                                        .clipShape(RoundedRectangle(cornerRadius: 6))
-                                        .shadow(radius: 5)
                                 }
+                            )
+                        
+                        ForEach(people) { person in
+                            Button {
+                                driverName = person.name
+                            } label: {
+                                Text(person.name)
+                                    .frame(width: 120)
+                                    .padding(.vertical, 7)
+                                    .background(.black)
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                                    .shadow(radius: 5)
                             }
                         }
                     }
-                    .padding(.bottom, 5)
-                    
-                    DatePicker("Time", selection: $selectedInTime, displayedComponents: .hourAndMinute)
-                        .datePickerStyle(CompactDatePickerStyle())
-                        .labelsHidden()
-                        .onReceive(timer) { input in
-                            selectedInTime = input
-                        }
-                        .foregroundColor(.gray)
-                        .background(Color.clear)
-                    
-                    HStack(spacing: 20) {
-                        Button {
-                            trackIn(trackNumber: trackNumber, driverName: driverName, dateIn: selectedInTime)
-                        } label: {
-                            Text("In")
-                                .foregroundStyle(.white)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding()
-                                .frame(minWidth: 100)
-                        }
-                        .background(.green)
-                        .clipShape(Circle())
-                        .shadow(radius: 10)
-                        Button {
-                            trackOut(trackNumber: trackNumber, driverName: driverName, dateOut: selectedInTime)
-                        } label: {
-                            Text("Out")
-                                .foregroundStyle(.white)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding()
-                                .frame(minWidth: 100)
-                        }
-                        .background(.red)
-                        .clipShape(Circle())
-                        .shadow(radius: 10)
-                    }
-                    .padding(.bottom, 30)
                 }
-                .padding()
+                .padding(.bottom, 5)
+                
+                DatePicker("Time", selection: $selectedInTime, displayedComponents: .hourAndMinute)
+                    .datePickerStyle(CompactDatePickerStyle())
+                    .labelsHidden()
+                    .onReceive(timer) { input in
+                        selectedInTime = input
+                    }
+                    .foregroundColor(.gray)
+                    .background(Color.clear)
+                
+                HStack(spacing: 20) {
+                    Button {
+                        trackIn(trackNumber: trackNumber, driverName: driverName, dateIn: selectedInTime)
+                    } label: {
+                        Text("כניסה")
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(25)
+                    }
+                    .background(trackNumber.isEmpty ? .gray : .green)
+                    .clipShape(Circle())
+                    .shadow(radius: 10)
+                    .disabled(trackNumber.isEmpty)
+                    
+                    Button {
+                        trackOut(trackNumber: trackNumber, driverName: driverName, dateOut: selectedInTime)
+                    } label: {
+                        Text("יציאה")
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(25)
+                    }
+                    .background(trackNumber.isEmpty ? .gray : .red)
+                    .clipShape(Circle())
+                    .shadow(radius: 10)
+                    .disabled(trackNumber.isEmpty)
+                }
+                .padding(.bottom, 30)
             }
-//        }
+            .padding()
+        }
     }
     
     func trackIn(trackNumber: String, driverName: String, dateIn: Date) {
@@ -185,6 +184,26 @@ struct TrafficView: View {
     func clearForm() {
         trackNumber = ""
         driverName = ""
+    }
+    
+    func formatTrackNumber(_ number: String) -> String {
+        let formattedNumber: String
+        
+        if number.count == 7 {
+            let prefix = number.prefix(2)
+            let middle = number.dropFirst(2).prefix(3)
+            let suffix = number.suffix(2)
+            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
+        } else if number.count == 8 {
+            let prefix = number.prefix(3)
+            let middle = number.dropFirst(3).prefix(2)
+            let suffix = number.suffix(3)
+            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
+            
+        } else {
+            formattedNumber = number
+        }
+        return formattedNumber
     }
 }
 

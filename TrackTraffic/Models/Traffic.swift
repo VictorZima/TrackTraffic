@@ -11,11 +11,11 @@ import SwiftData
 @Model
 class Traffic {
     var trackNumber: String
-    var driverName: String
+    var driverName: String?
     var dateIn: Date?
     var dateOut: Date?
     
-    init(trackNumber: String, driverName: String, dateIn: Date? = nil, dateOut: Date? = nil) {
+    init(trackNumber: String, driverName: String? = nil, dateIn: Date? = nil, dateOut: Date? = nil) {
         self.trackNumber = trackNumber
         self.driverName = driverName
         self.dateIn = dateIn
