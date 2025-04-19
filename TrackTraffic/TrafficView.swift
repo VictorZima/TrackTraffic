@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct TrafficView: View {
-    @Environment(\.modelContext) var modelContex
+    @Environment(\.modelContext) var modelContext
     @State private var path = [Traffic]()
     @Query var people: [Person]
     @Query var traffics: [Traffic]
@@ -87,7 +87,8 @@ struct TrafficView: View {
                                    trackInAction: {
                         trackIn(trackNumber: trackNumber,
                                 driverName: driverName,
-                                dateIn: selectedInTime, location: selectedLocation)
+                                dateIn: selectedInTime,
+                                location: selectedLocation)
                     },
                                    trackOutAction: {
                         trackOut(trackNumber: trackNumber,
@@ -127,10 +128,10 @@ struct TrafficView: View {
     
     func trackIn(trackNumber: String, driverName: String, dateIn: Date, location: Location?) {
         let traffic = Traffic(trackNumber: trackNumber,
-                              driverName: driverName,
+                              driverNameIn: driverName,
                               dateIn: dateIn,
                               location: location)
-        modelContex.insert(traffic)
+        modelContext.insert(traffic)
         clearForm()
     }
     
@@ -139,13 +140,16 @@ struct TrafficView: View {
             traffics[index].dateOut = dateOut
             //modelContex.update(traffics[index])
             do {
-                try modelContex.save()
+                try modelContext.save()
             } catch {
                 print("Failed to save context: \(error)")
             }
         } else {
-            let newTraffic = Traffic(trackNumber: trackNumber, driverName: driverName, dateIn: nil, dateOut: dateOut)
-            modelContex.insert(newTraffic)
+            let newTraffic = Traffic(trackNumber: trackNumber,
+                                     driverNameOut: driverName,
+                                     dateIn: nil,
+                                     dateOut: dateOut)
+            modelContext.insert(newTraffic)
         }
         clearForm()
     }

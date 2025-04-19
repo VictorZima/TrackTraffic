@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var showLocationView = false
-    @State private var showTrackView = false
-    @State private var showPersonView = false
-
+    @StateObject private var viewModel = SettingsViewModel()
+    
     var body: some View {
         VStack(spacing: 20) {
             Text("Settings")
@@ -20,7 +18,7 @@ struct SettingsView: View {
                 .padding()
             
             Button {
-                showLocationView = true
+                viewModel.showLocation()
             } label: {
                 Text("Locations")
                     .font(.headline)
@@ -35,12 +33,12 @@ struct SettingsView: View {
                     )
                     .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
             }
-            .sheet(isPresented: $showLocationView) {
+            .sheet(isPresented: $viewModel.isLocationPresented) {
                 LocationView()
             }
             
             Button {
-                showTrackView = true
+                viewModel.showTrack()
             } label: {
                 Text("Tracks")
                     .font(.headline)
@@ -55,12 +53,12 @@ struct SettingsView: View {
                     )
                     .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
             }
-            .sheet(isPresented: $showTrackView) {
+            .sheet(isPresented: $viewModel.isTrackPresented) {
                 TrackView()
             }
             
             Button {
-                showPersonView = true
+                viewModel.showPerson()
             } label: {
                 Text("Drivers")
                     .font(.headline)
@@ -75,7 +73,7 @@ struct SettingsView: View {
                     )
                     .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
             }
-            .sheet(isPresented: $showPersonView) {
+            .sheet(isPresented: $viewModel.isPersonPresented) {
                 PersonView()
             }
         }
