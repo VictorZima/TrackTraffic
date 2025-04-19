@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2811C5272DAE72930094A148 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811C5262DAE72930094A148 /* LocationView.swift */; };
+		2811C5292DAE73460094A148 /* EditLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811C5282DAE73460094A148 /* EditLocationView.swift */; };
+		2811C52B2DAEADEC0094A148 /* EntryModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811C52A2DAEADEC0094A148 /* EntryModalView.swift */; };
 		2817F0792BDDE4C100D4E44D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2817F0782BDDE4C100D4E44D /* .gitignore */; };
 		282BDE6F2BD7282300218DDF /* TrackTrafficApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */; };
-		282BDE712BD7282300218DDF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE702BD7282300218DDF /* MainView.swift */; };
+		282BDE712BD7282300218DDF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDE702BD7282300218DDF /* ContentView.swift */; };
 		282BDE732BD7282400218DDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282BDE722BD7282400218DDF /* Assets.xcassets */; };
 		282BDE762BD7282400218DDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282BDE752BD7282400218DDF /* Preview Assets.xcassets */; };
+		285880FD2DA8B5DA005342DF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285880FC2DA8B5D9005342DF /* Location.swift */; };
+		285C65D22DA75F41006AAF31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C65D12DA75F41006AAF31 /* SettingsView.swift */; };
+		285C65D42DA76B3E006AAF31 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C65D32DA76B3E006AAF31 /* TabBarButton.swift */; };
+		285C65D62DA76B67006AAF31 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285C65D52DA76B67006AAF31 /* BottomTabBarView.swift */; };
 		28648F542BDB340C000EBC02 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28648F532BDB340C000EBC02 /* Track.swift */; };
 		28648F562BDB348F000EBC02 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28648F552BDB348E000EBC02 /* TrackView.swift */; };
 		28648F582BDB3623000EBC02 /* EditTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28648F572BDB3623000EBC02 /* EditTrackView.swift */; };
@@ -24,12 +31,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2811C5262DAE72930094A148 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		2811C5282DAE73460094A148 /* EditLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationView.swift; sourceTree = "<group>"; };
+		2811C52A2DAEADEC0094A148 /* EntryModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModalView.swift; sourceTree = "<group>"; };
 		2817F0782BDDE4C100D4E44D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		282BDE6B2BD7282300218DDF /* TrackTraffic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackTraffic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTrafficApp.swift; sourceTree = "<group>"; };
-		282BDE702BD7282300218DDF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		282BDE702BD7282300218DDF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		282BDE722BD7282400218DDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		282BDE752BD7282400218DDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		285880FC2DA8B5D9005342DF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		285C65D12DA75F41006AAF31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		285C65D32DA76B3E006AAF31 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
+		285C65D52DA76B67006AAF31 /* BottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarView.swift; sourceTree = "<group>"; };
 		28648F532BDB340C000EBC02 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		28648F552BDB348E000EBC02 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		28648F572BDB3623000EBC02 /* EditTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTrackView.swift; sourceTree = "<group>"; };
@@ -74,12 +88,18 @@
 			children = (
 				282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */,
 				28F577042BD9C53C00B9F331 /* Models */,
-				282BDE702BD7282300218DDF /* MainView.swift */,
+				28C74D822DB09F4B00D487E2 /* View */,
+				285C65D32DA76B3E006AAF31 /* TabBarButton.swift */,
+				285C65D52DA76B67006AAF31 /* BottomTabBarView.swift */,
+				285C65D12DA75F41006AAF31 /* SettingsView.swift */,
 				28F577022BD9C52400B9F331 /* TrafficView.swift */,
 				28E309982BE0963900CE4E1D /* AllTrafficView.swift */,
 				28F577002BD9BB4400B9F331 /* PersonView.swift */,
+				2811C5262DAE72930094A148 /* LocationView.swift */,
 				28648F552BDB348E000EBC02 /* TrackView.swift */,
 				28A117012BD75D7F0037DB47 /* EditPersonView.swift */,
+				2811C5282DAE73460094A148 /* EditLocationView.swift */,
+				2811C52A2DAEADEC0094A148 /* EntryModalView.swift */,
 				28648F572BDB3623000EBC02 /* EditTrackView.swift */,
 				282BDE722BD7282400218DDF /* Assets.xcassets */,
 				282BDE742BD7282400218DDF /* Preview Content */,
@@ -95,11 +115,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		28C74D822DB09F4B00D487E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				282BDE702BD7282300218DDF /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		28F577042BD9C53C00B9F331 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				28A116FF2BD757D20037DB47 /* Person.swift */,
 				28648F532BDB340C000EBC02 /* Track.swift */,
+				285880FC2DA8B5D9005342DF /* Location.swift */,
 				28F577052BD9EE0D00B9F331 /* Traffic.swift */,
 			);
 			path = Models;
@@ -133,7 +162,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					282BDE6A2BD7282300218DDF = {
 						CreatedOnToolsVersion = 15.3;
@@ -177,16 +206,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				28F577012BD9BB4400B9F331 /* PersonView.swift in Sources */,
+				2811C5272DAE72930094A148 /* LocationView.swift in Sources */,
+				285C65D62DA76B67006AAF31 /* BottomTabBarView.swift in Sources */,
 				28A117022BD75D7F0037DB47 /* EditPersonView.swift in Sources */,
+				285880FD2DA8B5DA005342DF /* Location.swift in Sources */,
 				28A117002BD757D20037DB47 /* Person.swift in Sources */,
+				285C65D42DA76B3E006AAF31 /* TabBarButton.swift in Sources */,
+				2811C5292DAE73460094A148 /* EditLocationView.swift in Sources */,
 				28648F542BDB340C000EBC02 /* Track.swift in Sources */,
 				28648F562BDB348F000EBC02 /* TrackView.swift in Sources */,
-				282BDE712BD7282300218DDF /* MainView.swift in Sources */,
+				282BDE712BD7282300218DDF /* ContentView.swift in Sources */,
 				28F577062BD9EE0D00B9F331 /* Traffic.swift in Sources */,
 				28F577032BD9C52400B9F331 /* TrafficView.swift in Sources */,
 				28648F582BDB3623000EBC02 /* EditTrackView.swift in Sources */,
+				285C65D22DA75F41006AAF31 /* SettingsView.swift in Sources */,
 				282BDE6F2BD7282300218DDF /* TrackTrafficApp.swift in Sources */,
 				28E309992BE0963900CE4E1D /* AllTrafficView.swift in Sources */,
+				2811C52B2DAEADEC0094A148 /* EntryModalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +264,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UN432L4MFG;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -291,6 +328,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UN432L4MFG;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -320,15 +358,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrackTraffic/Preview Content\"";
-				DEVELOPMENT_TEAM = UN432L4MFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,15 +387,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrackTraffic/Preview Content\"";
-				DEVELOPMENT_TEAM = UN432L4MFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -30,6 +30,16 @@ struct TrackView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                 }
+                                
+                                if let locationName = track.location?.name {
+                                    Text(locationName)
+                                        .font(.caption)
+                                        .foregroundStyle(Color.gray)
+                                } else {
+                                    Text("---")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.gray)
+                                }
                             }
                             Spacer()
                             Text(track.model)

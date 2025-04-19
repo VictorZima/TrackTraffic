@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EditTrackView: View {
     @Bindable var track: Track
+    @Query var locations: [Location]
     
     var body: some View {
         Form {
@@ -17,6 +19,12 @@ struct EditTrackView: View {
             TextField("Model", text: $track.model)
                 .textContentType(.name)
             TextField("Driver", text: .nilCoalescing($track.driverName))
+            Picker("Location", selection: $track.location) {
+                Text("None").tag(nil as Location?)
+                ForEach(locations, id: \.self) { loc in
+                    Text(loc.name).tag(loc as Location?)
+                }
+            }
         }
         .navigationTitle("Edit Track")
         .navigationBarTitleDisplayMode(.inline)

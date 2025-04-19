@@ -46,18 +46,21 @@ struct AllTrafficView: View {
             .padding(.horizontal, 10)
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text("שעת יציאה")
+                    Text("שם הנהג")
                         .font(.subheadline)
-                        .frame(minWidth: 50, alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("מספר משאית")
+                        .font(.subheadline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Text("שעת כניסה")
                         .font(.subheadline)
                         .frame(minWidth: 50, alignment: .center)
-                    Text("מספר משאית")
+                    Text("שעת יציאה")
                         .font(.subheadline)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("שם הנהג")
+                        .frame(minWidth: 50, alignment: .center)
+                    Text("Location")
                         .font(.subheadline)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(minWidth: 50, alignment: .center)
                     
                 }
                 .padding(.horizontal, 4)
@@ -67,13 +70,16 @@ struct AllTrafficView: View {
                 List {
                     ForEach(Array(todaysTraffics.enumerated()), id: \.element) { index, traffic in
                         HStack {
-                            Text(traffic.dateOut?.formatted(.dateTime.hour().minute()) ?? "***")
-                                .frame(minWidth: 50, alignment: .center)
-                            Text(traffic.dateIn?.formatted(.dateTime.hour().minute()) ?? "***")
-                                .frame(minWidth: 50, alignment: .center)
+                            Text(traffic.driverName ?? "n/a")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(.horizontal, 6)
                             Text(formatTrackNumber(traffic.trackNumber))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
-                            Text(traffic.driverName ?? "n/a")
+                            Text(traffic.dateIn?.formatted(.dateTime.hour().minute()) ?? "***")
+                                .frame(minWidth: 50, alignment: .center)
+                            Text(traffic.dateOut?.formatted(.dateTime.hour().minute()) ?? "***")
+                                .frame(minWidth: 50, alignment: .center)
+                            Text(traffic.location?.name ?? "-")
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                                 .padding(.horizontal, 6)
                         }
