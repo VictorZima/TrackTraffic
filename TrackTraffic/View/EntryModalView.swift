@@ -94,6 +94,7 @@ struct EntryModalView: View {
             HStack(spacing: 20) {
                 Button {
                     trackInAction()
+                    closeAction()
                 } label: {
                    Text("Entry")
                         .foregroundStyle(.white)
@@ -108,6 +109,7 @@ struct EntryModalView: View {
                 
                 Button {
                     trackOutAction()
+                    closeAction()
                 } label: {
                     Text("Exit")
                         .foregroundStyle(.white)

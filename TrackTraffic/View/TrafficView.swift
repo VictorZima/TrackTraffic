@@ -102,7 +102,7 @@ struct TrafficView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 20)
                 }
-                .padding(.bottom, viewModel.isModalVisible ? 280 : 0)
+                .padding(.bottom, isModalVisible ? 280 : 0)
             }
             
             if isModalVisible {
