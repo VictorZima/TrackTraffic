@@ -10,40 +10,33 @@ import SwiftData
 
 struct LocationView: View {
     @Environment(\.modelContext) var modelContext
-    @State private var path = [Location]()
-    @Query var location: [Location]
+    @StateObject private var viewModel = LocationViewModel()
+    @Query var locations: [Location]
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $viewModel.path) {
             List {
-                ForEach(location) { location in
+                ForEach(locations) { location in
                     NavigationLink(value: location) {
                         Text(location.name)
                     }
                 }
-                .onDelete(perform: deleteLocation)
+                .onDelete {
+                    viewModel.deleteLocation(at: $0, from: locations, modelContext: modelContext)
+                }
             }
             .navigationTitle("Locations")
             .navigationDestination(for: Location.self) { location in
                 EditLocationView(location: location)
             }
             .toolbar {
-                Button("Add Location", systemImage: "plus", action: addLocation)
+                Button {
+                    viewModel.addLocation(context: modelContext)
+                } label: {
+                    Label("Add Location", systemImage: "plus")
+                }
             }
         }
         
-    }
-    
-    func addLocation() {
-        let location = Location(name: "")
-        modelContext.insert(location)
-        path.append(location)
-    }
-    
-    func deleteLocation(at offsets: IndexSet) {
-        for offset in offsets {
-            let location = location[offset]
-            modelContext.delete(location)
-        }
     }
 }

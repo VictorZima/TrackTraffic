@@ -10,13 +10,13 @@ import SwiftData
 
 struct TrackView: View {
     @Environment(\.modelContext) var modelContext
-    @State private var path = [Track]()
-    @Query var track: [Track]
+    @StateObject private var viewModel = TrackViewModel()
+    @Query var tracks: [Track]
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $viewModel.path) {
             List {
-                ForEach(track) { track in
+                ForEach(tracks) { track in
                     NavigationLink(value: track) {
                         HStack {
                             VStack {
@@ -47,28 +47,17 @@ struct TrackView: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteTrack)
+                .onDelete { viewModel.deleteTrack(at: $0, from: tracks, modelContext: modelContext) }
             }
             .navigationTitle("Tracks")
             .navigationDestination(for: Track.self) { track in
                 EditTrackView(track: track)
             }
             .toolbar {
-                Button("Add Track", systemImage: "plus", action: addTrack)
+                Button("Add Track", systemImage: "plus") {
+                    viewModel.addTrack(modelContext: modelContext)
+                }
             }
-        }
-    }
-    
-    func addTrack() {
-        let track = Track(number: "", model: "", driverName: nil)
-        modelContext.insert(track)
-        path.append(track)
-    }
-    
-    func deleteTrack(at offsets: IndexSet) {
-        for offset in offsets {
-            let track = track[offset]
-            modelContext.delete(track)
         }
     }
 }
