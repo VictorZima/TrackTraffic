@@ -29,6 +29,7 @@
 		28A117022BD75D7F0037DB47 /* EditPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A117012BD75D7F0037DB47 /* EditPersonView.swift */; };
 		28D32C1E2DBC7CFE004F271E /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D32C1D2DBC7CFE004F271E /* TrackViewModel.swift */; };
 		28D32C202DBC830E004F271E /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D32C1F2DBC830E004F271E /* LocationViewModel.swift */; };
+		28D32C222DBC87D9004F271E /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D32C212DBC87D9004F271E /* PersonViewModel.swift */; };
 		28E309992BE0963900CE4E1D /* AllTrafficView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E309982BE0963900CE4E1D /* AllTrafficView.swift */; };
 		28F577012BD9BB4400B9F331 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F577002BD9BB4400B9F331 /* PersonView.swift */; };
 		28F577032BD9C52400B9F331 /* TrafficView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F577022BD9C52400B9F331 /* TrafficView.swift */; };
@@ -59,6 +60,7 @@
 		28A117012BD75D7F0037DB47 /* EditPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonView.swift; sourceTree = "<group>"; };
 		28D32C1D2DBC7CFE004F271E /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		28D32C1F2DBC830E004F271E /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		28D32C212DBC87D9004F271E /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		28E309982BE0963900CE4E1D /* AllTrafficView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTrafficView.swift; sourceTree = "<group>"; };
 		28F577002BD9BB4400B9F331 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		28F577022BD9C52400B9F331 /* TrafficView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficView.swift; sourceTree = "<group>"; };
@@ -99,14 +101,7 @@
 				282BDE6E2BD7282300218DDF /* TrackTrafficApp.swift */,
 				28F577042BD9C53C00B9F331 /* Models */,
 				28C74D822DB09F4B00D487E2 /* View */,
-				285C65D32DA76B3E006AAF31 /* TabBarButton.swift */,
-				285C65D52DA76B67006AAF31 /* BottomTabBarView.swift */,
-				28F577002BD9BB4400B9F331 /* PersonView.swift */,
 				2863B0C12DB32A310030270D /* ViewModel */,
-				28A117012BD75D7F0037DB47 /* EditPersonView.swift */,
-				2811C5282DAE73460094A148 /* EditLocationView.swift */,
-				2811C52A2DAEADEC0094A148 /* EntryModalView.swift */,
-				28648F572BDB3623000EBC02 /* EditTrackView.swift */,
 				282BDE722BD7282400218DDF /* Assets.xcassets */,
 				282BDE742BD7282400218DDF /* Preview Content */,
 			);
@@ -124,6 +119,7 @@
 		2863B0C12DB32A310030270D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				28D32C212DBC87D9004F271E /* PersonViewModel.swift */,
 				2863B0BF2DB32A240030270D /* SettingsViewModel.swift */,
 				28D32C1F2DBC830E004F271E /* LocationViewModel.swift */,
 				28D32C1D2DBC7CFE004F271E /* TrackViewModel.swift */,
@@ -142,6 +138,13 @@
 				28F577022BD9C52400B9F331 /* TrafficView.swift */,
 				28648F552BDB348E000EBC02 /* TrackView.swift */,
 				2811C5262DAE72930094A148 /* LocationView.swift */,
+				28A117012BD75D7F0037DB47 /* EditPersonView.swift */,
+				2811C5282DAE73460094A148 /* EditLocationView.swift */,
+				2811C52A2DAEADEC0094A148 /* EntryModalView.swift */,
+				28648F572BDB3623000EBC02 /* EditTrackView.swift */,
+				285C65D32DA76B3E006AAF31 /* TabBarButton.swift */,
+				285C65D52DA76B67006AAF31 /* BottomTabBarView.swift */,
+				28F577002BD9BB4400B9F331 /* PersonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				28F577012BD9BB4400B9F331 /* PersonView.swift in Sources */,
 				2811C5272DAE72930094A148 /* LocationView.swift in Sources */,
 				2863B0C52DB39FA30030270D /* TrafficViewModel.swift in Sources */,
+				28D32C222DBC87D9004F271E /* PersonViewModel.swift in Sources */,
 				285C65D62DA76B67006AAF31 /* BottomTabBarView.swift in Sources */,
 				28A117022BD75D7F0037DB47 /* EditPersonView.swift in Sources */,
 				285880FD2DA8B5DA005342DF /* Location.swift in Sources */,
