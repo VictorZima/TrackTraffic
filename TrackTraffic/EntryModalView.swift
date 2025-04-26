@@ -18,13 +18,14 @@ struct EntryModalView: View {
     var timer: Publishers.Autoconnect<Timer.TimerPublisher>
     var trackInAction: () -> Void
     var trackOutAction: () -> Void
+    var closeAction: () -> Void
     
     var body: some View {
         VStack(spacing: 6) {
             HStack {
                 Spacer()
                 Button {
-                    trackNumber = ""
+                    closeAction()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.title)

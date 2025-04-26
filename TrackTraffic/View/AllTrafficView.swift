@@ -36,19 +36,18 @@ struct AllTrafficView: View {
             .padding(.horizontal, 10)
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text("Car N")
-                        .font(.subheadline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading)
+                    VStack {
+                        Text("Car N")
+                            .font(.subheadline)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading)
+                    }
                     Text("Entry")
                         .font(.subheadline)
-                        .frame(width: 50, alignment: .center)
+                        .frame(width: 80, alignment: .center)
                     Text("Exit")
                         .font(.subheadline)
-                        .frame(width: 50, alignment: .center)
-                    Text("Location")
-                        .font(.subheadline)
-                        .frame(width: 85, alignment: .center)
+                        .frame(width: 80, alignment: .center)
                 }
                 .background(Color.blue.opacity(0.3))
                 .foregroundColor(.white)
@@ -56,24 +55,28 @@ struct AllTrafficView: View {
                 List {
                     ForEach(Array(viewModel.todaysTraffics.enumerated()), id: \.element.id) { index, traffic in
                         HStack {
-                            Text(formatTrackNumber(traffic.trackNumber))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading)
+                            VStack(alignment: .leading) {
+                                Text(formatTrackNumber(traffic.trackNumber))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text(traffic.location?.name ?? "")
+                                    .font(.caption)
+                                    .frame(width: 85, alignment: .leading)
+                            }
+                            .padding(.leading)
+                            
                             VStack(spacing: 2) {
                                 Text(traffic.dateIn?.formatted(.dateTime.hour().minute()) ?? "***")
                                 Text(traffic.driverNameIn ?? "n/a")
                                     .font(.caption)
                             }
-                            .frame(width: 50, alignment: .center)
+                            .frame(width: 80, alignment: .center)
+                            
                             VStack(spacing: 2) {
-                                Text(traffic.dateOut?.formatted(.dateTime.hour().minute()) ?? "***")
-                                Text(traffic.driverNameOut ?? "n/a")
+                                Text(traffic.dateOut?.formatted(.dateTime.hour().minute()) ?? "")
+                                Text(traffic.driverNameOut ?? "")
                                     .font(.caption)
                             }
-                            .frame(width: 50, alignment: .center)
-                            Text(traffic.location?.name ?? "---")
-                                .font(.caption)
-                                .frame(width: 85, alignment: .center)
+                            .frame(width: 80, alignment: .center)
                         }
                         .frame(maxHeight: .infinity, alignment: .leading)
                         .listRowInsets(EdgeInsets())

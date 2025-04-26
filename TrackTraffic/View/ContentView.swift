@@ -27,6 +27,7 @@ struct ContentView: View {
             BottomTabBarView(selectedTab: $selectedTab)
         }
         .ignoresSafeArea(.container, edges: .bottom)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 

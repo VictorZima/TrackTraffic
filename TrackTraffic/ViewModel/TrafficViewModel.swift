@@ -13,8 +13,11 @@ final class TrafficViewModel: ObservableObject {
     @Published var driverName: String = ""
     @Published var selectedInTime: Date = Date()
     @Published var selectedLocation: Location? = nil
+    @Published var isModalVisible: Bool = false
     
-    var isModalPresented: Bool { !trackNumber.isEmpty }
+    var isModalPresented: Bool {
+        !trackNumber.isEmpty
+    }
     
     func formatTrackNumber(_ number: String) -> String {
         if number.count == 7 {

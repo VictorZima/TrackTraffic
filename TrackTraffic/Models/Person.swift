@@ -10,8 +10,10 @@ import SwiftData
 @Model
 class Person {
     var name: String
+    var location: Location?
     
-    init(name: String) {
+    init(name: String, location: Location? = nil) {
         self.name = name
+        self.location = location
     }
 }
