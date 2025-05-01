@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @AppStorage("selectedLanguage") private var selectedLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
     @StateObject private var viewModel = SettingsViewModel()
     
     var body: some View {
@@ -16,6 +17,16 @@ struct SettingsView: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
+            Text("Choose language")
+                .font(.title3)
+            
+            Picker("Language", selection: $selectedLanguage) {
+                Text("English").tag("en")
+                Text("עברית").tag("he")
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            
             
             Button {
                 viewModel.showLocation()

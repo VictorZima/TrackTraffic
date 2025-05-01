@@ -10,16 +10,18 @@ import SwiftData
 import Combine
 
 struct AllTrafficView: View {
+//    @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.modelContext) private var modelContext
     @Query var traffics: [Traffic]
-    
+    @Query var locations: [Location]
+    @State private var selectedFilterLocation: Location? = nil
     @StateObject var viewModel = AllTrafficViewModel()
     
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("All Traffic")
+                    Text(LocalizedStringKey("allTraffic.title"))
                         .fontWeight(.bold)
                     Text(Date().formatted(.dateTime.day().month().year()))
                         .font(.subheadline)
@@ -34,18 +36,42 @@ struct AllTrafficView: View {
                 }
             }
             .padding(.horizontal, 10)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    Button(action: { selectedFilterLocation = nil }) {
+                        Text("All")
+                            .padding(.vertical, 6).padding(.horizontal, 12)
+                            .background(selectedFilterLocation == nil ? Color.blue : Color.clear)
+                            .foregroundColor(selectedFilterLocation == nil ? .white : .primary)
+                            .cornerRadius(8)
+                    }
+                    ForEach(locations, id: \.self) { loc in
+                        let isSel = selectedFilterLocation?.id == loc.id
+                        Button(action: { selectedFilterLocation = isSel ? nil : loc }) {
+                            Text(loc.name)
+                                .padding(.vertical, 6).padding(.horizontal, 12)
+                                .background(isSel ? Color.blue : Color.clear)
+                                .foregroundColor(isSel ? .white : .primary)
+                                .cornerRadius(8)
+                        }
+                    }
+                }
+                .padding(.horizontal, 10)
+            }
+            
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
                     VStack {
-                        Text("Car N")
+                        Text("car.number")
                             .font(.subheadline)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading)
                     }
-                    Text("Entry")
+                    Text("entry.button")
                         .font(.subheadline)
                         .frame(width: 80, alignment: .center)
-                    Text("Exit")
+                    Text("exit.button")
                         .font(.subheadline)
                         .frame(width: 80, alignment: .center)
                 }
@@ -53,7 +79,11 @@ struct AllTrafficView: View {
                 .foregroundColor(.white)
 
                 List {
-                    ForEach(Array(viewModel.todaysTraffics.enumerated()), id: \.element.id) { index, traffic in
+                    ForEach(Array(
+                        viewModel.todaysTraffics
+                            .filter { selectedFilterLocation == nil || $0.location?.id == selectedFilterLocation?.id }
+                            .enumerated()
+                    ), id: \.element.id) { index, traffic in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(formatTrackNumber(traffic.trackNumber))

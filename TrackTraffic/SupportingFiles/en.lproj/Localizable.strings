@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  TrackTraffic
+
+  Created by VictorZima on 29/04/2025.
+  
+*/
+"allTraffic.title" = "All Traffic";
+"car.number" = "Car N";
+"entry.button" = "Entry";
+"exit.button" = "Exit";
