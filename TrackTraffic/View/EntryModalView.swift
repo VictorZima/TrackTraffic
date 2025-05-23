@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AudioToolbox
 
 struct EntryModalView: View {
     @Binding var trackNumber: String
@@ -95,6 +96,7 @@ struct EntryModalView: View {
                 Button {
                     trackInAction()
                     closeAction()
+                    AudioServicesPlaySystemSound(1026)
                 } label: {
                    Text("Entry")
                         .foregroundStyle(.white)
@@ -110,6 +112,7 @@ struct EntryModalView: View {
                 Button {
                     trackOutAction()
                     closeAction()
+                    AudioServicesPlaySystemSound(1026)
                 } label: {
                     Text("Exit")
                         .foregroundStyle(.white)
