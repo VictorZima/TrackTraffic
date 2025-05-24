@@ -13,6 +13,7 @@ struct TrackTrafficApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .id(selectedLanguage)
                 .environment(\.locale, Locale(identifier: selectedLanguage))
                 .environment(\.layoutDirection, selectedLanguage == "he" ? .rightToLeft : .leftToRight)
         }

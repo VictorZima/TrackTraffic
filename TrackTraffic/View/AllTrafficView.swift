@@ -10,11 +10,9 @@ import SwiftData
 import Combine
 
 struct AllTrafficView: View {
-//    @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.modelContext) private var modelContext
     @Query var traffics: [Traffic]
     @Query var locations: [Location]
-    @State private var selectedFilterLocation: Location? = nil
     @StateObject var viewModel = AllTrafficViewModel()
     
     var body: some View {
@@ -39,16 +37,16 @@ struct AllTrafficView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    Button(action: { selectedFilterLocation = nil }) {
+                    Button(action: { viewModel.selectedFilterLocation = nil }) {
                         Text("All")
                             .padding(.vertical, 6).padding(.horizontal, 12)
-                            .background(selectedFilterLocation == nil ? Color.blue : Color.clear)
-                            .foregroundColor(selectedFilterLocation == nil ? .white : .primary)
+                            .background(viewModel.selectedFilterLocation == nil ? Color.blue : Color.clear)
+                            .foregroundColor(viewModel.selectedFilterLocation == nil ? .white : .primary)
                             .cornerRadius(8)
                     }
-                    ForEach(locations, id: \.self) { loc in
-                        let isSel = selectedFilterLocation?.id == loc.id
-                        Button(action: { selectedFilterLocation = isSel ? nil : loc }) {
+                    ForEach(viewModel.locations, id: \.self) { loc in
+                        let isSel = viewModel.selectedFilterLocation?.id == loc.id
+                        Button(action: { viewModel.selectedFilterLocation = isSel ? nil : loc }) {
                             Text(loc.name)
                                 .padding(.vertical, 6).padding(.horizontal, 12)
                                 .background(isSel ? Color.blue : Color.clear)
@@ -80,13 +78,11 @@ struct AllTrafficView: View {
 
                 List {
                     ForEach(Array(
-                        viewModel.todaysTraffics
-                            .filter { selectedFilterLocation == nil || $0.location?.id == selectedFilterLocation?.id }
-                            .enumerated()
+                        viewModel.filteredTraffics.enumerated()
                     ), id: \.element.id) { index, traffic in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(formatTrackNumber(traffic.trackNumber))
+                                Text(viewModel.formatTrackNumber(traffic.trackNumber))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Text(traffic.location?.name ?? "")
                                     .font(.caption)
@@ -119,33 +115,17 @@ struct AllTrafficView: View {
                     .listRowBackground(Color.gray.opacity(0.2))
                 }
                 .listStyle(.plain)
-                .onAppear { viewModel.updateTraffics(traffics) }
-                .onChange(of: traffics) { oldValue, newValue in
-                    viewModel.updateTraffics(newValue)
+                .onAppear {
+                    viewModel.updateData(traffics: traffics, locations: locations)
                 }
+                .onChange(of: traffics) { _, newValue in
+                    viewModel.updateData(traffics: newValue, locations: locations)
+                }
+                .onChange(of: locations) { _, newValue in
+                    viewModel.updateData(traffics: traffics, locations: newValue)
+                }
+                
             }
         }
     }
-       
-    func formatTrackNumber(_ number: String) -> String {
-        let formattedNumber: String
-        
-        if number.count == 7 {
-            let prefix = number.prefix(2)
-            let middle = number.dropFirst(2).prefix(3)
-            let suffix = number.suffix(2)
-            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
-        } else if number.count == 8 {
-            let prefix = number.prefix(3)
-            let middle = number.dropFirst(3).prefix(2)
-            let suffix = number.suffix(3)
-            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
-            
-        } else {
-            formattedNumber = number
-        }
-        return formattedNumber
-    }
-    
-    
 }
