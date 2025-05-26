@@ -10,7 +10,6 @@ import SwiftData
 import Combine
 
 struct AllTrafficView: View {
-//    @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.modelContext) private var modelContext
     @Query var traffics: [Traffic]
     @Query var locations: [Location]
@@ -86,7 +85,7 @@ struct AllTrafficView: View {
                     ), id: \.element.id) { index, traffic in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(formatTrackNumber(traffic.trackNumber))
+                                Text(viewModel.formatTrackNumber(traffic.trackNumber))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Text(traffic.location?.name ?? "")
                                     .font(.caption)
@@ -126,26 +125,4 @@ struct AllTrafficView: View {
             }
         }
     }
-       
-    func formatTrackNumber(_ number: String) -> String {
-        let formattedNumber: String
-        
-        if number.count == 7 {
-            let prefix = number.prefix(2)
-            let middle = number.dropFirst(2).prefix(3)
-            let suffix = number.suffix(2)
-            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
-        } else if number.count == 8 {
-            let prefix = number.prefix(3)
-            let middle = number.dropFirst(3).prefix(2)
-            let suffix = number.suffix(3)
-            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
-            
-        } else {
-            formattedNumber = number
-        }
-        return formattedNumber
-    }
-    
-    
 }

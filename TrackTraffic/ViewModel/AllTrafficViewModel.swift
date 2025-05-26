@@ -55,14 +55,35 @@ final class AllTrafficViewModel: ObservableObject {
     }
     
     func deleteTraffic(at offsets: IndexSet, in context: ModelContext) {
-            for index in offsets {
-                let traffic = todaysTraffics[index]
-                context.delete(traffic)
-            }
-            do {
-                try context.save()
-            } catch {
-                print("Failed to save context after deletion: \(error)")
-            }
+        for index in offsets {
+            let traffic = todaysTraffics[index]
+            context.delete(traffic)
         }
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save context after deletion: \(error)")
+        }
+        
+    }
+    
+    func formatTrackNumber(_ number: String) -> String {
+        let formattedNumber: String
+        
+        if number.count == 7 {
+            let prefix = number.prefix(2)
+            let middle = number.dropFirst(2).prefix(3)
+            let suffix = number.suffix(2)
+            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
+        } else if number.count == 8 {
+            let prefix = number.prefix(3)
+            let middle = number.dropFirst(3).prefix(2)
+            let suffix = number.suffix(3)
+            formattedNumber = "\(prefix)-\(middle)-\(suffix)"
+            
+        } else {
+            formattedNumber = number
+        }
+        return formattedNumber
+    }
 }
